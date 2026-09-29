@@ -100,14 +100,14 @@ test("selected number calls only when registered and releases microphone probe",
       assert.equal(sent.find(message => message.command === "call").number, "+13065550100");
       assert.equal(stopped, 1);
     } else {
-      element("sip-host").value = "phone.tonywalker.ca";
+      element("sip-host").value = "phone.example.com";
       element("sip-extension").value = "209";
       element("sip-display-name").value = "Tony";
       element("sip-secret").value = "test-secret";
       element("credentials").listeners.submit({ preventDefault() {} });
       await new Promise(resolve => setImmediate(resolve));
       assert.equal(sent.at(-1).command, "connect");
-      assert.equal(sent.at(-1).settings.host, "phone.tonywalker.ca");
+      assert.equal(sent.at(-1).settings.host, "phone.example.com");
       assert.equal(sent.at(-1).settings.extension, "209");
       assert.equal(sent.at(-1).settings.displayName, "Tony");
       assert.equal(element("extension-badge").textContent, "Tony - 209");
