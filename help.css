@@ -1,0 +1,22 @@
+:root { font: 15px/1.55 system-ui, sans-serif; color-scheme: dark; background: #14202b; color: #eef4f8; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 800px; margin: auto; padding: 24px clamp(16px, 5vw, 40px) 48px; }
+header { border-bottom: 1px solid #41566a; padding-bottom: 12px; }
+.eyebrow { color: #72d8bd; font-size: 12px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+h1 { margin: 0 0 8px; line-height: 1.18; font-size: clamp(25px, 5vw, 34px); }
+h2 { font-size: 20px; margin-bottom: 8px; }
+section { padding: 8px 0; border-bottom: 1px solid #41566a; }
+p { margin: 10px 0; }
+a { color: #89dfd0; }
+code { font: .9em/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
+pre { overflow-x: auto; padding: 12px; border-radius: 8px; background: #0b1520; }
+pre code { overflow-wrap: normal; }
+table { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px; border-bottom: 1px solid #41566a; text-align: left; vertical-align: top; }
+th { color: #bbced9; }
+dt { margin-top: 12px; font-weight: 700; }
+dd { margin: 3px 0 0 0; color: #d4e0e8; }
+.makers-mark { display: flex; align-items: center; gap: 12px; padding-top: 24px; font-size: 13px; color: #bbced9; }
+.makers-mark strong { color: #eef4f8; }
+.stamp { display: grid; place-items: center; width: 42px; height: 42px; border: 2px double #72d8bd; border-radius: 50%; color: #72d8bd; font: 700 14px Georgia, serif; letter-spacing: -.05em; }

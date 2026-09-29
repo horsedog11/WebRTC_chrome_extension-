@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "pv-chrome-phone-test",
+  "version": "0.9.8",
+  "scripts": {
+    "build": "esbuild offscreen.js --bundle --minify --target=chrome120 --outfile=offscreen.bundle.js",
+    "check": "node --check background.js && node --check dial.js && node --check phone.js && node --check offscreen.js && node --check offscreen.bundle.js",
+    "test": "node --test tests/*.test.cjs"
+  },
+  "dependencies": { "sip.js": "0.21.2" },
+  "devDependencies": { "esbuild": "0.25.12" }
+}

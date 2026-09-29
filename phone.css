@@ -1,0 +1,65 @@
+:root { font: 14px/1.4 system-ui, sans-serif; color-scheme: dark; background: #14202b; color: #eef4f8; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 300px; }
+main { padding: 16px; }
+header, .row { display: flex; align-items: center; gap: 8px; }
+header { justify-content: space-between; }
+.header-actions { display: flex; align-items: center; gap: 7px; }
+h1 { font-size: 21px; margin: 0; }
+.badge { background: #263847; border-radius: 12px; padding: 3px 9px; font-size: 12px; min-width: 0; max-width: 165px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#status { padding: 10px; border-radius: 8px; background: #263847; min-height: 40px; }
+details, section { margin-top: 12px; padding: 12px; border: 1px solid #41566a; border-radius: 9px; }
+summary { cursor: pointer; font-weight: 650; }
+label { display: block; margin-top: 12px; }
+input { display: block; width: 100%; border: 1px solid #60758b; border-radius: 6px; background: #0b1520; color: inherit; padding: 9px; margin-top: 4px; font: inherit; }
+.identity-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.dial-field { display: flex; align-items: stretch; border: 1px solid #60758b; border-radius: 6px; background: #0b1520; margin-top: 4px; overflow: hidden; }
+.dial-field:focus-within { outline: 2px solid #72d8bd; outline-offset: 2px; }
+.dial-field input { flex: 1; min-width: 0; margin: 0; border: 0; outline: 0; background: transparent; }
+.search-icon { display: grid; place-items: center; width: 36px; flex: none; color: #bbced9; }
+.search-icon svg, .call-icon svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.dial-field button.call-icon { display: grid; place-items: center; margin: 3px; width: 38px; padding: 0; border: 0; background: #116f63; }
+.dial-field button.call-icon.is-hangup { background: #a52d3b; }
+.icon-hangup { display: none; }
+.is-hangup .icon-hangup { display: initial; }
+.is-hangup .icon-call { display: none; }
+.ring-button { display: grid; place-items: center; width: 34px; height: 30px; padding: 3px; margin: 0; background: #116f63; border: 1px solid #45b5a5; }
+.dnd-button { min-width: 42px; height: 30px; padding: 3px 5px; margin: 0; background: #eef4f8; border-color: #eef4f8; color: #14202b; font-size: 11px; font-weight: 800; }
+.dnd-button.is-on { background: #a52d3b; border-color: #e47781; color: #fff; }
+.ring-button.is-off { background: #a52d3b; border-color: #e47781; }
+.ring-button svg, .mic-button svg { width: 19px; height: 19px; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.mic-button { display: grid; place-items: center; width: 34px; height: 30px; padding: 3px; margin: 0; background: #116f63; border: 1px solid #45b5a5; }
+.mic-button.is-muted { background: #a52d3b; border-color: #e47781; }
+.auto-answer-button { min-width: 38px; height: 30px; padding: 3px 5px; margin: 0; background: #263847; border-color: #6990a7; color: #bbced9; font-size: 11px; font-weight: 800; }
+.auto-answer-button.is-on { background: #eef4f8; border-color: #eef4f8; color: #14202b; }
+.mic-slash { display: none; }
+.mic-button.is-muted .mic-slash { display: initial; }
+.bell-slash { display: none; }
+.ring-button.is-off .bell-slash { display: initial; }
+button { cursor: pointer; background: #2b475c; border: 1px solid #6990a7; border-radius: 6px; color: inherit; padding: 9px 12px; margin-top: 12px; font: inherit; }
+button:disabled { cursor: not-allowed; opacity: .48; }
+button.primary { display: block; width: 100%; background: #116f63; border-color: #45b5a5; font-weight: 700; }
+button.primary.is-hangup { background: #a52d3b; border-color: #e47781; }
+.session-button { display: block; width: 100%; font-weight: 700; }
+.session-button.is-disconnect { background: #a52d3b; border-color: #e47781; }
+#authorize { width: 100%; margin-top: 10px; }
+.help-link { display: inline-block; margin-top: 10px; color: #bbdedb; font-size: 13px; }
+.workflow-controls { display: flex; gap: 8px; align-items: stretch; }
+.mode-switch { display: flex; flex: 1; border: 1px solid #6990a7; border-radius: 6px; overflow: hidden; }
+.mode-switch button { flex: 1; margin: 0; padding: 6px; border: 0; border-radius: 0; background: #263847; }
+.mode-switch button + button { border-left: 1px solid #6990a7; }
+.mode-switch button.is-selected { background: #eef4f8; color: #14202b; font-weight: 700; }
+#ready { flex: 1; margin: 0; padding: 6px; font-weight: 700; }
+#ready.is-ready { background: #116f63; border-color: #45b5a5; }
+[hidden] { display: none !important; }
+button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid #72d8bd; outline-offset: 2px; }
+.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-top: 9px; }
+.keypad-actions { padding-bottom: 9px; border-bottom: 1px solid #41566a; }
+.keypad-actions label { margin-top: 8px; }
+.keypad-actions .row button { margin-top: 8px; }
+.keypad button { margin: 0; font-size: 19px; min-height: 42px; }
+#keypad-panel { padding: 8px 10px; margin-top: 10px; }
+.row > button { flex: 1; }
+#call-bar { margin-top: 10px; border-top: 1px solid #41566a; }
+#caller { margin-bottom: 0; }
+audio { width: 100%; margin-top: 12px; }

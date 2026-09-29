@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KYC source icon preview</title>
+  <style>
+    :root { font: 14px/1.4 system-ui, sans-serif; color-scheme: dark; background: #14202b; color: #eef4f8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 16px; max-width: 420px; }
+    h1 { font-size: 19px; margin: 0 0 12px; }
+    p { color: #bbced9; }
+    .result { display: flex; align-items: center; gap: 12px; min-height: 68px; margin: 9px 0; padding: 4px 10px 4px 4px; border: 1px solid #41566a; border-radius: 9px; background: #1b2c39; }
+    .source { display: grid; place-items: center; flex: 0 0 60px; width: 60px; height: 60px; border-radius: 7px; }
+    .source img { width: 38px; height: 38px; }
+    .crm { background: #60438a; } .invoice { background: #855c23; } .ticket { background: #126b70; }
+    .lines { min-width: 0; } .lines strong, .lines span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .lines span { color: #bbced9; }
+  </style>
+</head>
+<body>
+  <h1>KYC source icons</h1>
+  <p>Layout preview only. The second line will carry the actual lookup result.</p>
+  <div class="result"><div class="source crm"><img src="suitecrm.svg" alt=""></div><div class="lines"><strong>SuiteCRM</strong><span>Contact lookup result</span></div></div>
+  <div class="result"><div class="source invoice"><img src="invoice-ninja.svg" alt=""></div><div class="lines"><strong>Invoice Ninja</strong><span>Customer lookup result</span></div></div>
+  <div class="result"><div class="source ticket"><img src="osticket.svg" alt=""></div><div class="lines"><strong>osTicket</strong><span>Ticket lookup result</span></div></div>
+</body>
+</html>

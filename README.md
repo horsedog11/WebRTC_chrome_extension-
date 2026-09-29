@@ -10,7 +10,7 @@ Host, Extension, and Display Name are saved in Chrome local extension storage. T
 
 ## Load on Linux Mint
 
-Unpack this directory and open `chrome://extensions`. Enable Developer mode and choose **Load unpacked**, selecting the `chrome-phone/` directory containing `manifest.json`. If the earlier version is already loaded from this same directory, replace its files and press **Reload** on its extension card. Reloading ends any active call; do that between calls.
+Download and extract this repository, then open `chrome://extensions`. Enable Developer mode and choose **Load unpacked**, selecting the extracted directory containing `manifest.json`. If an earlier version is loaded from that directory, replace its files and press **Reload** on its extension card. Reloading ends any active call; do that between calls.
 
 The committed `offscreen.bundle.js` runs without an npm installation. To rebuild from source, use Node 18 or later:
 

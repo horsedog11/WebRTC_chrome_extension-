@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WebRTC help · PV Phone</title>
+  <link rel="stylesheet" href="help.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">PV Phone · Help</p>
+      <h1>WebRTC setup and troubleshooting</h1>
+      <p>Use the working 209 extension as a comparison. Your PBX may use a different host, extension, certificate, or codec list.</p>
+    </header>
+
+    <section>
+      <h2>Register the phone</h2>
+      <p>In Settings, enter the PBX hostname, extension number, display name, and that extension’s SIP password. Set the password in the FreePBX web portal first; enter the same password in the phone when registering. The phone does not save it.</p>
+      <p>Our working example uses host <code>phone.tonywalker.ca</code>, extension <code>209</code>, WebSocket <code>wss://phone.tonywalker.ca:8089/ws</code>, and SIP identity <code>sip:209@phone.tonywalker.ca</code>.</p>
+    </section>
+
+    <section>
+      <h2>Compare the media settings</h2>
+      <p>The working 209 endpoint reported these values in <code>pjsip show endpoint 209</code>:</p>
+      <table>
+        <thead><tr><th>Setting</th><th>Observed on 209</th></tr></thead>
+        <tbody>
+          <tr><td>Media encryption</td><td><code>dtls</code></td></tr>
+          <tr><td>AVPF · ICE · RTCP mux</td><td><code>true</code> · <code>true</code> · <code>true</code></td></tr>
+          <tr><td>DTLS verify · setup</td><td><code>Fingerprint</code> · <code>actpass</code></td></tr>
+          <tr><td>DTLS certificate</td><td><code>/etc/asterisk/keys/wildcard.crt</code></td></tr>
+          <tr><td>DTLS private key</td><td><code>/etc/asterisk/keys/wildcard.key</code></td></tr>
+        </tbody>
+      </table>
+      <p>Our endpoint also displayed <code>webrtc: no</code> and <code>media_use_received_transport: false</code> while calls and two-way audio worked. These are observations, not values to force on another PBX. Compare the full media settings and test a call. Use FreePBX’s settings and Apply Config so its generated configuration remains consistent.</p>
+    </section>
+
+    <section>
+      <h2>Find the failing stage</h2>
+      <dl>
+        <dt>WebSocket does not connect</dt>
+        <dd>Confirm the hostname, trusted HTTPS certificate, and Asterisk HTTPS port <code>8089</code> with its <code>/ws</code> endpoint. Run <code>http show status</code> on Asterisk.</dd>
+        <dt>Registration is rejected</dt>
+        <dd>Check the extension number and SIP password in FreePBX. Use <code>pjsip show contacts</code> to see whether a WebSocket contact is present after registration.</dd>
+        <dt>Reachable, but a call fails with 488 or “Couldn't negotiate stream ... (nothing)”</dt>
+        <dd>Registration succeeded, but audio negotiation did not. Compare DTLS media encryption, AVPF, ICE, RTCP mux, certificate paths, and allowed audio codecs for this endpoint.</dd>
+        <dt>Microphone permission dismissed</dt>
+        <dd>Keep the phone window visible, retry Register or Call, and allow microphone access in Chrome. A reachable SIP contact does not prove that audio can connect.</dd>
+        <dt>Caller shows as unknown</dt>
+        <dd>Check the incoming SIP INVITE’s From identity. The phone displays the name and number sent by the PBX; KYC name lookup is a separate future feature.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Useful commands on the PBX</h2>
+      <pre><code>sudo asterisk -rx "http show status"
+sudo asterisk -rx "pjsip show endpoint 209"
+sudo asterisk -rx "pjsip show contacts"</code></pre>
+      <p>For one failing call, enable SIP logging, reproduce the failure, then disable it:</p>
+      <pre><code>sudo asterisk -rx "pjsip set logger on"
+sudo asterisk -rx "pjsip set logger off"</code></pre>
+      <p>Closing the phone window leaves the extension registered. Reloading the extension or closing Chrome ends registration and requires the SIP password again.</p>
+      <p><a href="https://docs.asterisk.org/Configuration/WebRTC/Configuring-Asterisk-for-WebRTC-Clients/" target="_blank" rel="noopener">Asterisk WebRTC configuration reference</a></p>
+    </section>
+
+    <footer class="makers-mark">
+      <span class="stamp" aria-hidden="true">TW</span>
+      <div><strong>Made by Tony Walker</strong><br><a href="mailto:tony@tonywalker.ca">tony@tonywalker.ca</a></div>
+    </footer>
+  </main>
+</body>
+</html>

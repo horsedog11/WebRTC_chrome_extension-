@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "PV Phone Beta",
+  "version": "0.9.8",
+  "description": "Configurable WebRTC phone and click-to-call.",
+  "permissions": ["windows", "offscreen", "contextMenus", "storage"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "Open PV Phone" },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' wss:"
+  }
+}

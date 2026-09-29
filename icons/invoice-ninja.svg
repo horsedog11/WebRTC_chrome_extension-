@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="#eef4f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Invoice Ninja invoice">
+  <path d="M10 5h21l7 7v31l-5-3-5 3-5-3-5 3-8-3V5Z"/>
+  <path d="M31 5v8h7M16 18h16M16 23h10M16 33h9"/>
+  <circle cx="32" cy="32" r="4"/>
+</svg>
