@@ -64,3 +64,7 @@ Three bundled source icons for future two-line KYC results live in `icons/`. Ope
 ## Add-on sub-project: Customer Actions
 
 [Customer Actions design](docs/project/customer-actions/README.md) records the proposed extension add-on for creating customer objects through MCP/API using the current caller, a selected KYC search result, or a specific right-clicked app record. The first target is an osTicket support ticket from Sarah's KYC details or a selected Invoice Ninja invoice, with optional filling of supported forms. Includes source-specific CRM/Ninja context, Tom's review, field mapping, backend responsibilities and implementation gates. This is agreed design, not implemented functionality; KYC, authorization and supported-page recognition remain prerequisites.
+
+## Add-on sub-project: Receptionist Panel
+
+[Receptionist Panel design](docs/project/receptionist-panel/README.md) captures each user's configurable reception workspace: avatar/name tiles, primary and secondary destinations, hover descriptions, a separate status reference with live status colors, and lock/unlock for adding, editing, removing and reordering tiles. Destinations include extensions, cells, voicemail/group voicemail, conferences, ring groups, queues and assistants. Includes the proposed per-user persistence model, avatar storage needs, transfer interaction decisions and implementation gates. This is planned work, not an implemented panel.
