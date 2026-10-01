@@ -6,9 +6,17 @@ Status: agreed product ideas with proposed implementation details. This is a Chr
 
 ## Purpose and ownership
 
-Give Tom a visual workspace of people and destinations for dialing and choosing transfer destinations. Reception is available to any user, not only a receptionist role: each user owns their workspace and can arrange it for their work.
+Give Tom a visual workspace of people and destinations for dialing and choosing transfer destinations. Access to the Reception add-on is granted through configured Authentik groups. Each eligible user owns their workspace and can arrange it for their work. Group membership controls access to the add-on; it does not turn individual workspaces into a shared group board.
 
 This belongs in PV Phone alongside its existing call controls. Reuse the phone's call lifecycle rather than building a second phone. This add-on is separate from [Customer Actions](../customer-actions/README.md), which creates customer objects or fills forms using KYC and source records.
+
+## Authentik group access
+
+Decision updated 2026-10-01: Reception is available to members of groups defined through Authentik, rather than universally to all extension users. Configure which Authentik group or groups grant this capability; no group names have been selected yet.
+
+The extension should expose the panel only when the authenticated user has the Reception capability. The backend must also enforce group-derived access for workspace, avatar and status operations; hiding the panel alone is insufficient. Per-user ownership remains required within the eligible groups. Lock/unlock only controls editing and cannot grant access.
+
+Implementation must handle logout and loss of group access by disabling the panel and denying further protected operations. Exact claim mapping, permission refresh/revocation timing and retention of saved workspaces remain implementation choices. Existing PBX permissions still govern dialing and transfers.
 
 ## Agreed panel ideas
 
@@ -36,7 +44,7 @@ The reception page needs an explicit lock/unlock control to prevent accidental w
 
 - Locked: ordinary dialing and destination selection remain usable; adding, editing, removing and reordering tiles are disabled.
 - Unlocked: the owner can add, edit, remove and reorder individual tiles, including avatars, text, targets and descriptions.
-- Any user can manage their own workspace; editing is not reserved for an administrator or receptionist role.
+- Any user granted Reception access through Authentik groups can manage their own workspace; editing their workspace does not require an administrator role.
 
 The lock is an editing safeguard, not an authentication or authorization boundary. Defaulting to locked when reopening the panel is a proposed implementation behavior.
 
@@ -71,7 +79,7 @@ A trusted backend/status service should provide permitted PBX status to the exte
 
 ## First implementation slice
 
-1. Define the workspace configuration and avatar persistence contract, including per-user ownership.
+1. Define the Authentik group-to-Reception capability mapping and enforcement, plus workspace configuration and avatar persistence with per-user ownership.
 2. Build the tile layout with primary/secondary selection areas, names, avatars and secondary descriptions.
 3. Add lock/unlock and persistent add/edit/remove/reorder behavior.
 4. Connect destination selection to existing dial and transfer controls with explicit action semantics.
@@ -79,7 +87,9 @@ A trusted backend/status service should provide permitted PBX status to the exte
 
 ## Acceptance criteria
 
-- Two users can keep different boards; one user's layout edits do not alter another's workspace.
+- Membership in a configured Authentik group grants Reception access; users without that capability cannot access protected Reception operations.
+- Logout or loss of group access disables Reception according to the defined permission-refresh policy; the backend rejects unauthorized requests.
+- Two eligible users can keep different boards; one user's layout edits do not alter another's workspace.
 - Tiles, order, descriptions, target fields and avatar references survive reopening.
 - Locked mode prevents configuration changes while leaving ordinary actions usable.
 - Primary and secondary actions remain distinct; the secondary is not hardcoded to voicemail.
@@ -90,6 +100,7 @@ A trusted backend/status service should provide permitted PBX status to the exte
 
 ## Open implementation choices
 
+- Authentik group names/mapping, claims, permission refresh/revocation timing and workspace retention after access removal.
 - Panel placement, sizing and how it opens alongside PV Phone.
 - Idle dialing versus destination-selection behavior; explicit transfer action and any attended-transfer scope.
 - Authenticated workspace backend, local caching/sync behavior and avatar storage.
