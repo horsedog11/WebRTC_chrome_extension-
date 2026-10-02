@@ -65,6 +65,10 @@ Three bundled source icons for future two-line KYC results live in `icons/`. Ope
 
 [Customer Actions design](docs/project/customer-actions/README.md) records the proposed extension add-on for creating customer objects through MCP/API using the current caller, a selected KYC search result, or a specific right-clicked app record. The first target is an osTicket support ticket from Sarah's KYC details or a selected Invoice Ninja invoice, with optional filling of supported forms. Includes source-specific CRM/Ninja context, Tom's review, field mapping, backend responsibilities and implementation gates. This is agreed design, not implemented functionality; KYC, authorization and supported-page recognition remain prerequisites.
 
+## Identity, Mission profile and shared presence
+
+[Identity and shared presence design](docs/project/identity-presence.md) records the planned Authentik session boundary, Mission-specific roles, present/default Missions, dialer heartbeat, Asterisk/Rocket.Chat/OOO presence normalization, manager work-state projection and manager Dispatch pause/resume behavior. These are planned integrations, not implemented functionality.
+
 ## Add-on sub-project: Receptionist Panel
 
 [Receptionist Panel design](docs/project/receptionist-panel/README.md) captures the configurable reception workspace for users granted access through Authentik groups. Each eligible user owns their own workspace, with avatar/name tiles, primary and secondary destinations, hover descriptions, a separate status reference with live status colors, and lock/unlock for adding, editing, removing and reordering tiles. Destinations include extensions, cells, voicemail/group voicemail, conferences, ring groups, queues and assistants. Includes the proposed per-user persistence model, avatar storage needs, transfer interaction decisions and implementation gates. This is planned work, not an implemented panel.
