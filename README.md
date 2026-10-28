@@ -72,3 +72,7 @@ Three bundled source icons for future two-line KYC results live in `icons/`. Ope
 ## Add-on sub-project: Receptionist Panel
 
 [Receptionist Panel design](docs/project/receptionist-panel/README.md) captures the configurable reception workspace for users granted access through Authentik groups. Each eligible user owns their own workspace, with avatar/name tiles, primary and secondary destinations, hover descriptions, a separate status reference with live status colors, and lock/unlock for adding, editing, removing and reordering tiles. Destinations include extensions, cells, voicemail/group voicemail, conferences, ring groups, queues and assistants. Includes the proposed per-user persistence model, avatar storage needs, transfer interaction decisions and implementation gates. This is planned work, not an implemented panel.
+
+## Planned add-on: Pipeline Clipboard
+
+[Pipeline Clipboard design](docs/pipeline-clipboard.md) specifies a domain-allowlisted **Add to Pipeline Clipboard** right-click action: the extension sends a selected link/page URL to an authenticated n8n webhook, receives a normalized record via Data Docker SQL/MCP/API reads, stages multiple records internally, and provides **Copy to Desktop Clipboard** (JSON/vCard/plain text). The browser contains no platform-specific record lookup code. This feature is **not yet implemented**.
