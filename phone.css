@@ -63,3 +63,10 @@ button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px 
 #call-bar { margin-top: 10px; border-top: 1px solid #41566a; }
 #caller { margin-bottom: 0; }
 audio { width: 100%; margin-top: 12px; }
+
+
+.workspace-tabs {display:flex;gap:4px;margin-bottom:12px} .workspace-tabs button {flex:1;margin:0;padding:8px 5px;font-size:12px} .workspace-tabs [aria-selected="true"] {background:#eef4f8;color:#14202b;font-weight:700}
+h2 {font-size:18px;margin:0 0 12px} .search-row {display:flex;gap:6px;align-items:stretch} .search-row input {min-width:0;flex:1} .search-row button {margin-top:4px}
+.contact-card {border:1px solid #41566a;border-radius:8px;padding:12px;margin-top:12px;overflow-wrap:anywhere} .contact-card h3 {font-size:16px;margin:0 0 6px} .contact-card p {margin:5px 0} .record-source {color:#bbced9;font-size:12px}
+.contact-actions,.contact-phone {display:flex;gap:7px;align-items:center;flex-wrap:wrap} .contact-actions button,.contact-phone button {font-size:12px;padding:6px 8px;margin-top:6px} select {background:#0b1520;color:#eef4f8;border:1px solid #60758b;border-radius:6px;padding:6px}
+#rocket-frame {display:block;width:100%;height:65vh;min-height:340px;border:1px solid #41566a;border-radius:8px;margin-top:12px;background:white} #pipeline-status:empty {display:none} #pipeline-settings-status {overflow-wrap:anywhere}

@@ -95,3 +95,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   })().then(sendResponse, error => sendResponse({ ok: false, error: error.message || String(error) }));
   return true;
 });
+
+
+importScripts("pipeline.js", "pipeline-worker.js");
