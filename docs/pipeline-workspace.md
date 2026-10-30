@@ -1,12 +1,13 @@
 # Contact capture, Who is Sarah, and Rocket.Chat
 
-Implemented on `feature/contact-clipboard-chat-search`, manifest version 0.10.0. Based on this repository's 0.9.8 source; compare with any unpublished installed build before replacing it. This branch does not activate a gateway, deploy Data Docker or change Rocket.Chat settings.
+Implemented on `feature/contact-clipboard-chat-search`, manifest version 0.10.1. Based on this repository's 0.9.8 source; compare with any unpublished installed build before replacing it. This branch does not activate a gateway, deploy Data Docker or change Rocket.Chat settings.
 
 ## Features
 
+- **SuiteCRM click-to-call:** a normal click on a `tel:` phone link on `https://crm.pipelineventure.com` hands the number to PV Phone. A registered idle phone dials; otherwise the number is staged without interrupting an active call. Modified clicks retain browser behavior. Delegation covers dynamically rendered SPA record/list views. Synthetic page clicks cannot trigger a call. This local handoff requires no Data Docker/n8n session.
 - **Phone:** existing offscreen WebRTC engine and right-click selection dialing remain intact. Incoming calls and pending right-click dial actions bring the phone pane forward.
 - **People / Who is Sarah?:** search by name, email, phone or UUID. One read-only gateway queries the existing SuiteCRM/Ninja identity adapters. Results remain separate candidates and retain source and contact/account email distinctions. Individual backend failures produce partial/unavailable status, not a misleading empty successful search.
-- **Pipeline Clipboard:** right-click a supported SuiteCRM/Ninja record link or page to collect authoritative data by URL. No DOM scraping, content script or arbitrary page fetch is used. SuiteCRM SPA fragments are preserved. Client-specific URL parsing lives in Data Docker, not the extension.
+- **Pipeline Clipboard:** right-click a supported SuiteCRM/Ninja record link or page to collect authoritative data by URL. Contact capture does not scrape the DOM or fetch arbitrary pages. A separate SuiteCRM-only content script handles telephone-link clicks. SuiteCRM SPA fragments are preserved. Client-specific URL parsing lives in Data Docker, not the extension.
 - **Explicit copy:** stage up to 25 recent records in trusted extension session storage; copy a selected record as JSON, person vCard or text. Nothing automatically overwrites the desktop clipboard. Account/client records offer JSON/text; select a contact for vCard. vCard output preserves contact scope and folds UTF-8 lines.
 - **Chat:** embeds `https://chat.pipelineventure.com/?layout=embedded` when opened. Open Chat and Reload controls are always available. No Rocket.Chat credentials are stored or injected, and no framing restrictions are stripped. Third-party cookies, login policy or the server's CSP/X-Frame-Options may prevent the embed; use the tab fallback.
 
@@ -46,3 +47,5 @@ Only approved HTTPS hostnames can be submitted; service-side parsing selects a f
 ## Validation
 
 `npm test` covers existing dialing/phone behavior plus URL allowlisting, vCard scope/folding, worker auth/session/capture boundaries and DOM UI behavior (including hostile contact names, explicit staging, Chat fallback and incoming-call navigation). `npm run check` validates script syntax; `npm run build` regenerates the SIP bundle. The companion backend has Python tests and a Node gateway-filter test.
+
+The SuiteCRM content-script match adds site access for that exact HTTPS hostname. Reload already-open SuiteCRM tabs after installing the update. Test actual SuiteCRM phone links in Chrome before replacing the installed build; no live calls were made during development. Plain non-link text is still available through right-click dialing.

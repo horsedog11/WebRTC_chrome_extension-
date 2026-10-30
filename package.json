@@ -1,10 +1,10 @@
 {
   "private": true,
   "name": "pv-chrome-phone-test",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "scripts": {
     "build": "esbuild offscreen.js --bundle --minify --target=chrome120 --outfile=offscreen.bundle.js",
-    "check": "node --check background.js && node --check dial.js && node --check phone.js && node --check offscreen.js && node --check offscreen.bundle.js && node --check pipeline.js && node --check pipeline-worker.js && node --check workspace.js",
+    "check": "node --check background.js && node --check dial.js && node --check phone.js && node --check offscreen.js && node --check offscreen.bundle.js && node --check pipeline.js && node --check pipeline-worker.js && node --check workspace.js && node --check suitecrm-click-to-call.js",
     "test": "node --test tests/*.test.cjs"
   },
   "dependencies": {
