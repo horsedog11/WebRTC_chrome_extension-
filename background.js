@@ -12,10 +12,15 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
   if (info.menuItemId !== "dial-selection") return;
   const number = normalizeDialTarget(info.selectionText);
   if (!number) return;
+  await queueDialIntent(number);
+});
+
+async function queueDialIntent(number) {
   await chrome.storage.session.set({ dialIntent: { number, id: crypto.randomUUID() } });
   await openPhone();
   chrome.runtime.sendMessage({ target: "dial-pending" }).catch(() => {});
-});
+  return { ok: true };
+}
 
 async function takeDialIntent() {
   if (takingDial) return { ok: true, intent: null };
@@ -54,6 +59,20 @@ async function ensureOffscreen() {
 
 chrome.action.onClicked.addListener(() => { openPhone().catch(console.error); });
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message?.target === "suitecrm-click-to-call") {
+    let approved = false;
+    try {
+      const source = new URL(sender.url);
+      approved = sender.id === chrome.runtime.id && source.origin === "https://crm.pipelineventure.com";
+    } catch (_) { /* Reject non-page senders and malformed source URLs. */ }
+    const number = normalizeDialTarget(message.number);
+    if (!approved || !number) {
+      sendResponse({ ok: false, error: "Invalid SuiteCRM phone request" });
+      return false;
+    }
+    queueDialIntent(number).then(sendResponse, () => sendResponse({ ok: false, error: "Could not open PV Phone" }));
+    return true;
+  }
   if (message?.target === "background-event" && message.event === "incoming") {
     openPhone().catch(console.error);
     return false;
@@ -95,3 +114,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   })().then(sendResponse, error => sendResponse({ ok: false, error: error.message || String(error) }));
   return true;
 });
+
+
+importScripts("pipeline.js", "pipeline-worker.js");

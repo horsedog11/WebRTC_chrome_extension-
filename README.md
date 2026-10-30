@@ -76,3 +76,8 @@ Three bundled source icons for future two-line KYC results live in `icons/`. Ope
 ## Planned add-on: Pipeline Clipboard
 
 [Pipeline Clipboard design](docs/pipeline-clipboard.md) specifies a domain-allowlisted **Add to Pipeline Clipboard** right-click action: the extension sends a selected link/page URL to an authenticated n8n webhook, receives a normalized record via Data Docker SQL/MCP/API reads, stages multiple records internally, and provides **Copy to Desktop Clipboard** (JSON/vCard/plain text). The browser contains no platform-specific record lookup code. This feature is **not yet implemented**.
+
+
+## Contact workspace — 0.10.0 feature branch
+
+[Implemented contact capture, Who is Sarah search and Rocket.Chat](docs/pipeline-workspace.md) adds read-only People/Clipboard/Chat panes to the existing phone. The companion gateway and user sign-in integration still require deployment; no live services are changed by loading the source.

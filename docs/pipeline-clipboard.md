@@ -1,6 +1,6 @@
 # Pipeline Clipboard — managed-record collection (design)
 
-Status: agreed architecture; **not implemented**. This is an add-on to the existing PV Phone / Chrome Manifest V3 extension, not a replacement for the phone or its existing right-click dial action.
+Status: read-only extension UI, scoped gateway filter and Data Docker resolvers implemented on the contact-workspace feature branches; **not live-deployed**. See [implementation and setup](pipeline-workspace.md). This is an add-on to the existing PV Phone / Chrome Manifest V3 extension, not a replacement for the phone or its existing right-click dial action.
 
 ## User experience
 
@@ -104,3 +104,4 @@ Allowlist updates may eventually come from an authenticated backend configuratio
 
 - [Customer Actions](project/customer-actions/README.md) — future user-driven actions/record creation
 - [Identity and shared presence](project/identity-presence.md) — Authentik session and permission plans
+
